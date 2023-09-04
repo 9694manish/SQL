@@ -1,0 +1,55 @@
+Concat,instr,locate,trim ,strng
+
+
+
+
+
+
+
+
+
+
+
+
+
+select CONCAT ("h" ,"i" ,"1")from dual;
+
+
+select CONCAT_ws ('hy ' ,"hello " ,"i " )from dual;
+
+select upper('manish') from dual;
+
+
+select substr( substring('hello',1,3),2);
+
+
+select instr("hello","o");
+
+
+select locate('a','rajasthan',1);
+
+select ltrim('    mani');
+select trim('    mani    ');
+select trim(leading " " from'    mani    ');
+select trim(trailing " " from'    mani    ');
+
+-- remove string data 
+select trim(both "z" from'zzzz  zz  yz');
+
+-- left add string
+select lpad('hello' ,7,'#');
+
+-- right add string
+select rpad('hello',7,'#');
+
+-- replace string
+select replace('manish','s','#');
+
+use sakila;
+select id , name from customer_list;
+select * from language;
+
+select count(*) from language;
+
+-- insert statment insert into table values (val1,valu2,valu3)
+insert INTO language values(10,'portuguese', now());
