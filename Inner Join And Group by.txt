@@ -1,0 +1,63 @@
+Inner Join And Group by
+
+
+
+use sakila;
+select * from rental;
+select title, count(rental_id) as totalcount from
+film INNER JOIN inventory USING (film_id)
+INNER JOIN rental USING (inventory_id)
+group by title having totalcounty>15
+order by totalcount desc limit 3;
+
+
+desc INVENTORY;
+SELECT *  FROM FILM;
+SELECT * FROM INVENTORY;
+
+
+select cust.customer_id, rental.rental_id,cust.email , inv.film_id,
+film_category.category_id, category.name
+from customer as cust
+inner join rental using (customer_id)
+inner join inventory as inv using (inventory_id)
+inner join film_category using (film_id)
+inner join category using (category_id)
+where email="JANE.BENNETT@sakilacustomer.org";
+
+
+select cust.email , count(film_category.category_id) as count, category.name  
+from customer as cust
+inner join rental using (customer_id)
+inner join inventory as inv using (inventory_id)
+inner join film_category using (film_id)
+inner join category using (category_id)
+group by email ,name;
+
+
+select * from film_category;
+show tables; 
+create table employee(eid int , ename varchar(20), email varchar(20), maneger_id int);
+insert into employee value(1, "Manish" , "Manish@mahawar.com" , null);
+insert into employee value(2, "lokesh" , "lokesh@mahawar.com" , 1);
+insert into employee value(3, "manos" , "manos@mahawar.com" , 4);
+insert into employee value(4, "ram" , "ram@mahawar.com" , 2);
+
+select * from employee;
+
+select emp.eid, emp.ename, emp.maneger_id from employee as emp; 
+
+select emp.eid, emp.ename, emp.maneger_id ,maneger.eid, maneger.ename
+ from employee as emp, employee as maneger where emp.maneger_id = maneger.eid;
+
+
+use sakila;
+show tables;
+select film_id, rental_duration from film 
+where film_id=1;
+select film_id, rental_duration from film 
+where rental_duration=6;
+
+select film_id, rental_duration from film 
+where rental_duration=(select film_id, rental_duration from film 
+where film_id=1);
