@@ -1,0 +1,30 @@
+show databases;
+ use employees;
+ 
+ select * from employees where hire_date >"1986-08-28";
+ select * from employees where first_name="Georgi" and birth_date="1953-08-22";
+ 
+ show tables;
+ select * from titles;
+ 
+-- title == employ_no-1001-- 
+
+select title from titles where emp_no=10001;
+select * from titles where title=(select title from titles where emp_no=10001);
+
+-- 
+select title from titles where emp_no in(10001,10002);
+select * from titles;
+select * from titles where title=(select title from titles where emp_no in(10001,10002);
+
+select salary from salaries where emp_no=10002;
+
+select * from salaries
+where salary < any( select salary from salaries where emp_no=10002);
+
+-- any (equivalent to all the result sest value-- 
+-- >any : greate than the minimum value-- 
+
+select * from salaries
+where salary > any( select salary from salaries where emp_no=10002)
+order by salary desc;
